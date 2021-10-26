@@ -1,7 +1,6 @@
 import {IStrategy} from "./IStrategy";
-import {IPoint} from "./IPoint";
 
-export class Context {
+export class ArrayContext {
     private _strategy: IStrategy;
 
     constructor(strategy: IStrategy) {
@@ -17,7 +16,7 @@ export class Context {
         return this._strategy.constructor.name;
     }
 
-    public executeLogic(A: IPoint, B: IPoint): number {
-        return this._strategy.execute(A, B);
+    public executeLogic(array: number[]): number {
+        return this._strategy.execute(array);
     }
 }
