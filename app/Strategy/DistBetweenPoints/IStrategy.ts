@@ -1,3 +1,5 @@
-export interface IStrategy<ParamType, ReturnType> {
-    execute(param: ParamType): ReturnType;
+import {IPoint} from "./IPoint";
+
+export interface IStrategy{
+    execute(A: IPoint, B: IPoint): number;
 }
