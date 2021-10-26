@@ -12,7 +12,12 @@ export class Context {
         this._strategy = strategy;
     }
 
+    get strategyName() {
+        // @ts-ignore
+        return this._strategy.constructor.name;
+    }
+
     public executeLogic(A: IPoint, B: IPoint): number {
-        return this.strategy.execute(A, B);
+        return this._strategy.execute(A, B);
     }
 }
