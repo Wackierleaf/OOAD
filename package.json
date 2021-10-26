@@ -1,0 +1,25 @@
+{
+  "name": "ooad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wackierleaf/OOAD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wackierleaf/OOAD/issues"
+  },
+  "homepage": "https://github.com/Wackierleaf/OOAD#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.4.4"
+  }
+}
