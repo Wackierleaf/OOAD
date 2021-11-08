@@ -7,9 +7,12 @@ import {ArrayContext} from "./Strategy/Array/ArrayContext";
 import {FindMedianElement} from "./Strategy/Array/FindMedianElement";
 import {FindAverageValue} from "./Strategy/Array/FindAverageValue";
 import {FindFrequentItem} from "./Strategy/Array/FindFrequentItem";
-import {House} from "./Template/House";
-import {IndustrialBuilding} from "./Template/IndustrialBuilding";
-import {PublicBuilding} from "./Template/PublicBuilding";
+import {House} from "./Template/Realty/House";
+import {IndustrialBuilding} from "./Template/Realty/IndustrialBuilding";
+import {PublicBuilding} from "./Template/Realty/PublicBuilding";
+import {PassengerCar} from "./Template/Cars/PassengerCar";
+import {Truck} from "./Template/Cars/Truck";
+import {PublicTransport} from "./Template/Cars/PublicTransport";
 
 /**
  Реализовать 2 набора стратегий.
@@ -27,6 +30,8 @@ import {PublicBuilding} from "./Template/PublicBuilding";
  3. Найти самй частый элемент.
  */
 function demonstrateStrategyPattern() {
+    console.log('* * * * * * * * * * Strategy pattern * * * * * * * * * *');
+
     // 1
     const A: IPoint = {x: 1, y: 3};
     const B: IPoint =  {x: -1, y: 2};
@@ -93,6 +98,9 @@ function demonstrateStrategyPattern() {
  в подробном описаниие.
  */
 function demonstrateTemplatePattern() {
+    console.log('\n* * * * * * * * * * Template method pattern * * * * * * * * * *');
+
+    // 1
     const myHouse = new House('Pupkin st', 3, 5);
     console.log(`Class name: ${myHouse.constructor.name}\n\n`);
     myHouse.displayDescription();
@@ -102,11 +110,20 @@ function demonstrateTemplatePattern() {
     const shoppingСenter = new PublicBuilding('Lenina st', 6, ['food court', 'playground']);
     console.log(`Class name: ${shoppingСenter.constructor.name}\n\n`);
     shoppingСenter.displayDescription();
+
+    // 2
+    const fordCar = new PassengerCar('g123ty rus 36', 'Ford', 'qy7651');
+    console.log(`Class name: ${fordCar.constructor.name}\n\n`);
+    fordCar.displayDescription();
+    const volvoTruck = new Truck('e213df rus 143', 'Volvo', 4)
+    console.log(`Class name: ${volvoTruck.constructor.name}\n\n`);
+    volvoTruck.displayDescription();
+    const liazBus = new PublicTransport('e67jk rus 777', 'Liaz', 50);
+    console.log(`Class name: ${liazBus.constructor.name}\n\n`);
+    liazBus.displayDescription();
 }
 
 export function main() {
-    console.log('* * * * * * * * * * Strategy pattern * * * * * * * * * *')
-    demonstrateStrategyPattern();
-    console.log('\n* * * * * * * * * * Template method pattern * * * * * * * * * *')
+    // demonstrateStrategyPattern();
     demonstrateTemplatePattern();
 }

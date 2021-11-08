@@ -7,11 +7,11 @@ export abstract class Building {
         this._floorsCount = floorsCount;
     }
 
-    protected set address(address: string) {
+    public set address(address: string) {
         this._address = address;
     }
 
-    protected set floorsCount(count: number) {
+    public set floorsCount(count: number) {
         this._floorsCount = count;
     }
 
@@ -21,6 +21,7 @@ export abstract class Building {
         console.log(`\tNumber of floors: ${this._floorsCount}`);
         console.log('ADDITIONAL INFORMATION:\n');
         this.displayDetailedDescription();
+        console.log('\n');
     }
 
     protected abstract displayDetailedDescription(): void;
