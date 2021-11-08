@@ -7,6 +7,9 @@ import {ArrayContext} from "./Strategy/Array/ArrayContext";
 import {FindMedianElement} from "./Strategy/Array/FindMedianElement";
 import {FindAverageValue} from "./Strategy/Array/FindAverageValue";
 import {FindFrequentItem} from "./Strategy/Array/FindFrequentItem";
+import {House} from "./Template/House";
+import {IndustrialBuilding} from "./Template/IndustrialBuilding";
+import {PublicBuilding} from "./Template/PublicBuilding";
 
 /**
  Реализовать 2 набора стратегий.
@@ -28,7 +31,7 @@ function demonstrateStrategyPattern() {
     const A: IPoint = {x: 1, y: 3};
     const B: IPoint =  {x: -1, y: 2};
     const distContext = new DistContext(new DistCalculation1());
-    console.log(`Dist with strategy ${distContext.strategyName} ${distContext.executeLogic(A, B)}`);
+    console.log(`\nDist with strategy ${distContext.strategyName} ${distContext.executeLogic(A, B)}`);
     distContext.strategy = new DistCalculation2();
     console.log(`Dist with strategy ${distContext.strategyName} ${distContext.executeLogic(A, B)}`);
     distContext.strategy = new DistCalculation3();
@@ -49,8 +52,61 @@ function demonstrateStrategyPattern() {
     console.log(`Array: ${array} with strategy ${arrayContext.strategyName} ${arrayContext.executeLogic(array)}`);
 }
 
+
+/**
+ * Вариант 1
+ Используя шаблонный метод реализавать описанные здания
+ абстрактный класс здание:
+    Поля:
+        1. адрес
+        2. количество этажей
+    методы:
+        1. задать адрес
+        2. задать количество этажей
+        3. получить описание
+ В получить описание вывести общее описание: адрес и этажность, а так же вывести подробное
+ описание реализованое в наследниках.
+    Наследники:
+        1. жилой дом
+        2. промышленное здание
+        3. общественное здание
+ Наследник содержит как минимум одно уникальное поле задаваемое при инициализации и выводимое
+ в подробном описании.
+
+ Вариант 2
+ Используя шаблонный метод реализавать описание машины
+ абстрактный класс здание:
+    Поля:
+        1. госномер
+        2. производитель
+    методы:
+        1. задать госномер
+        2. задать производителя
+        3. получить описание
+ В получить описание вывести общее описание: госномер и производитель, а так же вывести подробное
+ описание реализованое в наследниках.
+    Наследники:
+        1. легковой автомобиль
+        2. грузовой автомобиль
+        3. общественный транспорт
+ Наследник содержит как минимум одно уникальное поле задаваемое при инициализации и выводимое
+ в подробном описаниие.
+ */
+function demonstrateTemplatePattern() {
+    const myHouse = new House('Pupkin st', 3, 5);
+    console.log(`Class name: ${myHouse.constructor.name}\n\n`);
+    myHouse.displayDescription();
+    const factory = new IndustrialBuilding('Revolution st', 10, true);
+    console.log(`Class name: ${factory.constructor.name}\n\n`);
+    factory.displayDescription();
+    const shoppingСenter = new PublicBuilding('Lenina st', 6, ['food court', 'playground']);
+    console.log(`Class name: ${shoppingСenter.constructor.name}\n\n`);
+    shoppingСenter.displayDescription();
+}
+
 export function main() {
     console.log('* * * * * * * * * * Strategy pattern * * * * * * * * * *')
     demonstrateStrategyPattern();
     console.log('\n* * * * * * * * * * Template method pattern * * * * * * * * * *')
+    demonstrateTemplatePattern();
 }
