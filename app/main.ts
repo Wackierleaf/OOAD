@@ -13,6 +13,7 @@ import {PublicBuilding} from "./Template/Realty/PublicBuilding";
 import {PassengerCar} from "./Template/Cars/PassengerCar";
 import {Truck} from "./Template/Cars/Truck";
 import {PublicTransport} from "./Template/Cars/PublicTransport";
+import {Building} from "./Template/Realty/Building";
 
 /**
  Реализовать 2 набора стратегий.
@@ -101,13 +102,13 @@ function demonstrateTemplatePattern() {
     console.log('\n* * * * * * * * * * Template method pattern * * * * * * * * * *');
 
     // 1
-    const myHouse = new House('Pupkin st', 3, 5);
+    const myHouse: Building = new House('Pupkin st', 3, 5);
     console.log(`Class name: ${myHouse.constructor.name}\n\n`);
     myHouse.displayDescription();
-    const factory = new IndustrialBuilding('Revolution st', 10, true);
+    const factory: Building = new IndustrialBuilding('Revolution st', 10, true);
     console.log(`Class name: ${factory.constructor.name}\n\n`);
     factory.displayDescription();
-    const shoppingСenter = new PublicBuilding('Lenina st', 6, ['food court', 'playground']);
+    const shoppingСenter: Building = new PublicBuilding('Lenina st', 6, ['food court', 'playground']);
     console.log(`Class name: ${shoppingСenter.constructor.name}\n\n`);
     shoppingСenter.displayDescription();
 

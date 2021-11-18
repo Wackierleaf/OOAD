@@ -1,6 +1,6 @@
-import {IStrategy} from "./IStrategy";
+import {IArrayStrategy} from "./IArrayStrategy";
 
-export class FindMedianElement implements IStrategy {
+export class FindMedianElement implements IArrayStrategy {
     private _sortingRule(a: number, b: number): number {
         if (a > b) return 1;
         if (a < b) return -1;

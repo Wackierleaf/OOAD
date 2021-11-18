@@ -1,3 +1,3 @@
-export interface IStrategy {
+export interface IArrayStrategy {
     execute(array: number[]): number;
 }

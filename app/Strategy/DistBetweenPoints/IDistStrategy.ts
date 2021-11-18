@@ -1,5 +1,5 @@
 import {IPoint} from "./IPoint";
 
-export interface IStrategy{
+export interface IDistStrategy {
     execute(A: IPoint, B: IPoint): number;
 }

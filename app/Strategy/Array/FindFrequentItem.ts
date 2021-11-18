@@ -1,6 +1,6 @@
-import {IStrategy} from "./IStrategy";
+import {IArrayStrategy} from "./IArrayStrategy";
 
-export class FindFrequentItem implements IStrategy {
+export class FindFrequentItem implements IArrayStrategy {
     private _getFrequentItem(array: number[]): number {
         let mf = 1;
         let m = 0;

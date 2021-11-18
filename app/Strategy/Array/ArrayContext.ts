@@ -1,13 +1,13 @@
-import {IStrategy} from "./IStrategy";
+import {IArrayStrategy} from "./IArrayStrategy";
 
 export class ArrayContext {
-    private _strategy: IStrategy;
+    private _strategy: IArrayStrategy;
 
-    constructor(strategy: IStrategy) {
+    constructor(strategy: IArrayStrategy) {
         this._strategy = strategy;
     }
 
-    set strategy(strategy: IStrategy) {
+    set strategy(strategy: IArrayStrategy) {
         this._strategy = strategy;
     }
 

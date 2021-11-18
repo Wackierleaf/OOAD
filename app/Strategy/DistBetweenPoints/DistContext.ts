@@ -1,14 +1,14 @@
-import {IStrategy} from "./IStrategy";
+import {IDistStrategy} from "./IDistStrategy";
 import {IPoint} from "./IPoint";
 
 export class DistContext {
-    private _strategy: IStrategy;
+    private _strategy: IDistStrategy;
 
-    constructor(strategy: IStrategy) {
+    constructor(strategy: IDistStrategy) {
         this._strategy = strategy;
     }
 
-    set strategy(strategy: IStrategy) {
+    set strategy(strategy: IDistStrategy) {
         this._strategy = strategy;
     }
 
