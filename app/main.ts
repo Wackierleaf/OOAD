@@ -14,6 +14,14 @@ import {PassengerCar} from "./Template/Cars/PassengerCar";
 import {Truck} from "./Template/Cars/Truck";
 import {PublicTransport} from "./Template/Cars/PublicTransport";
 import {Building} from "./Template/Realty/Building";
+import {Invoker} from "./Command/Invoker";
+import {WorkingModuleCommand} from "./Command/WorkingModuleCommand";
+import {WorkingModule} from "./Command/WorkingModule";
+import {NetworkModule} from "./Command/NetworkModule";
+import {NetworkModuleCommand} from "./Command/NetworkModuleCommand";
+import {GenerateCmd} from "./Command/GenerateCmd";
+import {ProcessingCmd} from "./Command/ProcessingCmd";
+import {CheckCmd} from "./Command/CheckCmd";
 
 /**
  Реализовать 2 набора стратегий.
@@ -124,7 +132,48 @@ function demonstrateTemplatePattern() {
     liazBus.displayDescription();
 }
 
+
+/**
+ Реализовать 2 класса наследника от раодительского класса:
+ 1. Рабочий модуль.
+ 2. Сетевой модуль.
+ В родительском классе обязательно указать абстрактный обработчик сообщений.
+ Разраобтать структуру сообщения содержащую:
+ сообщение (с произвольной структурой) (может быть указателем),
+ длинна сообщения (опционально в зависимости от определения сообщения),
+ ссылка на обратный вызов автора сообщения,
+ адресата,
+ Рабочий модуль раз в 2-3 секунды генерирует сообщения для сетевого модуля. Сетевой модуль
+ вызывает по окончании обработки функцию обратного вызова, рабочий проверяет ответ и
+ перепосылает запрос или генерирует новый с указанной паузой.
+ Все этапы:
+ 1. Генерация сообщения.
+ 2. Пересылка.
+ 3. Обработка.
+ 4. Вызов обратного вызова.
+ Писать в консольный лог с указанием времени и адреса текущего модуля.
+ */
+function demonstrateCommandPattern() {
+    console.log('\n* * * * * * * * * * Command pattern * * * * * * * * * *');
+    setInterval(function () {
+        const networkModule = new NetworkModule();
+        const workingModule = new WorkingModule();
+        const genCmd = new GenerateCmd(workingModule);
+        const invoker = new Invoker(genCmd);
+        let msg = invoker.do();
+        // @ts-ignore
+        const procCmd = new ProcessingCmd(networkModule, msg);
+        invoker.command = procCmd;
+        msg = invoker.do();
+        // @ts-ignore
+        const checkCmd = new CheckCmd(workingModule, msg);
+        invoker.command = checkCmd;
+        invoker.do();
+    }, (Math.floor(Math.random() * (3 - 2 + 1)) + 1)*1000);
+}
+
 export function main() {
     // demonstrateStrategyPattern();
-    demonstrateTemplatePattern();
+    // demonstrateTemplatePattern();
+    demonstrateCommandPattern();
 }

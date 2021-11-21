@@ -1,6 +1,6 @@
 export interface IMessage {
     text: string;
-    length?: number;
-    authorCallback: any;
+    length: number;
+    callBack: any;
     recipient: string;
 }

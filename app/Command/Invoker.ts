@@ -12,6 +12,6 @@ export class Invoker {
     }
 
     do() {
-        this._command.execute();
+        return this._command.execute();
     }
 }
