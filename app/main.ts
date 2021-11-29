@@ -14,14 +14,9 @@ import {PassengerCar} from "./Template/Cars/PassengerCar";
 import {Truck} from "./Template/Cars/Truck";
 import {PublicTransport} from "./Template/Cars/PublicTransport";
 import {Building} from "./Template/Realty/Building";
-import {Invoker} from "./Command/Invoker";
-import {WorkingModuleCommand} from "./Command/WorkingModuleCommand";
 import {WorkingModule} from "./Command/WorkingModule";
 import {NetworkModule} from "./Command/NetworkModule";
-import {NetworkModuleCommand} from "./Command/NetworkModuleCommand";
-import {GenerateCmd} from "./Command/GenerateCmd";
-import {ProcessingCmd} from "./Command/ProcessingCmd";
-import {CheckCmd} from "./Command/CheckCmd";
+import {MessageHandler} from "./Command/MessageHandler";
 
 /**
  Реализовать 2 набора стратегий.
@@ -155,21 +150,28 @@ function demonstrateTemplatePattern() {
  */
 function demonstrateCommandPattern() {
     console.log('\n* * * * * * * * * * Command pattern * * * * * * * * * *');
-    setInterval(function () {
-        const networkModule = new NetworkModule();
-        const workingModule = new WorkingModule();
-        const genCmd = new GenerateCmd(workingModule);
-        const invoker = new Invoker(genCmd);
-        let msg = invoker.do();
-        // @ts-ignore
-        const procCmd = new ProcessingCmd(networkModule, msg);
-        invoker.command = procCmd;
-        msg = invoker.do();
-        // @ts-ignore
-        const checkCmd = new CheckCmd(workingModule, msg);
-        invoker.command = checkCmd;
-        invoker.do();
-    }, (Math.floor(Math.random() * (3 - 2 + 1)) + 1)*1000);
+    const msgHandler = new MessageHandler();
+    const workingModule = new WorkingModule(msgHandler);
+    workingModule.startWork();
+}
+
+
+/**
+ * Реализовать "фабрику" с использованием фабричного метода реализующего работу основных
+ компонентов фабрики, для реализации и стандартизации структуры внутренних модулей фабрики
+ использовать паттерн абстрактная фабрика.
+ Вариант 1.
+ Реализовать фабрику по производству одежды 3-х типов (фабричный метод). Вся одежда имеет 2
+ параметра (например: ткань и размер) (абстрактная фабрика).
+ Вариант 2.
+ Реализовать фабрику по производству станков 3-х типов (фабричный метод). Вся станки имеет 2
+ параметра (например: схема упровления, обрабатываемы материал) (абстрактная фабрика).
+ Вариант 3.
+ Реализовать фабрику по производству зданий 3-х типов (фабричный метод). Все здания имеют 2
+ параметра (например: материал и назначение) (абстрактная фабрика).
+ */
+function demonstrateFactoryPatterns() {
+
 }
 
 export function main() {
