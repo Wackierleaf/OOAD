@@ -15,8 +15,11 @@ import {Truck} from "./Template/Cars/Truck";
 import {PublicTransport} from "./Template/Cars/PublicTransport";
 import {Building} from "./Template/Realty/Building";
 import {WorkingModule} from "./Command/WorkingModule";
-import {NetworkModule} from "./Command/NetworkModule";
 import {MessageHandler} from "./Command/MessageHandler";
+import {SchoolCreator} from "./Factory method and abstract factory/Buildings/School";
+import {BankCreator} from "./Factory method and abstract factory/Buildings/Bank";
+import {HospitalCreator} from "./Factory method and abstract factory/Buildings/Hospital";
+import {BuildingFactory} from "./Factory method and abstract factory/Buildings/BuildingFactory";
 
 /**
  Реализовать 2 набора стратегий.
@@ -171,11 +174,22 @@ function demonstrateCommandPattern() {
  параметра (например: материал и назначение) (абстрактная фабрика).
  */
 function demonstrateFactoryPatterns() {
+    const schoolCr = new SchoolCreator();
+    const bankCr = new BankCreator();
+    const hospitalCr = new HospitalCreator();
+    console.log(schoolCr.doAction());
+    console.log(bankCr.doAction());
+    console.log(hospitalCr.doAction());
 
+    const buildingFactory = new BuildingFactory();
+    const school = buildingFactory.createSchool();
+    const bank = buildingFactory.createBank();
+    const hospital = buildingFactory.createHospital();
 }
 
 export function main() {
     // demonstrateStrategyPattern();
     // demonstrateTemplatePattern();
-    demonstrateCommandPattern();
+    // demonstrateCommandPattern();
+    demonstrateFactoryPatterns();
 }
